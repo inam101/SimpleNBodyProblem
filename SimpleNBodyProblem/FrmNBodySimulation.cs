@@ -19,7 +19,6 @@ namespace SmallGames.NBodySimulation
     {
         // command for stopping a process running in bg via PowerShell as Admin
         // Stop-Process -id 20396
-        // to add other distributions.
 
         private KnownUniverse universe;
         long counting = 0;

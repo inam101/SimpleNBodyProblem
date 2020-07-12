@@ -87,15 +87,15 @@ namespace SmallGames
                     values.Add(new DoublePoint(x, y));
                 }
             }
-            var factorForSize =  (double)size / clusteringGridSize;
+            var factorForSize = (double)size / clusteringGridSize;
             var aClusters = clusters.ToArray();
             if (aClusters.Length > 0 && values.Count == 0)
             {
                 for (int i = 0; i < count; i++)
                 {
                     var index = Tools.GetRandomNo(10) % aClusters.Length;
-                    var x = (4.0 - ((double)Tools.GetRandomNo(10) % 9))/10;
-                    var y = (4.0 - ((double)Tools.GetRandomNo(10) % 9))/10;
+                    var x = (4.0 - ((double)Tools.GetRandomNo(10) % 9)) / 10;
+                    var y = (4.0 - ((double)Tools.GetRandomNo(10) % 9)) / 10;
                     values.Add(new DoublePoint((aClusters[index].X + x) * factorForSize, (aClusters[index].Y + y) * factorForSize));
                 }
             }
