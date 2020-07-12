@@ -69,6 +69,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtbxDensity = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtbxNoOfParticals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtbxMass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarTimeSpeed)).BeginInit();
@@ -138,6 +139,7 @@
             this.txtbxMass.Name = "txtbxMass";
             this.txtbxMass.Size = new System.Drawing.Size(130, 20);
             this.txtbxMass.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.txtbxMass, "Mass in Kg of each particle");
             this.txtbxMass.Value = new decimal(new int[] {
             100,
             0,
@@ -317,7 +319,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(207, 325);
+            this.label7.Size = new System.Drawing.Size(239, 338);
             this.label7.TabIndex = 0;
             this.label7.Text = resources.GetString("label7.Text");
             // 
@@ -393,17 +395,17 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "ID";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 88;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Speed";
-            this.columnHeader2.Width = 120;
+            this.columnHeader2.Width = 131;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Mass";
-            this.columnHeader3.Width = 50;
+            this.columnHeader3.Width = 62;
             // 
             // btnLoadVisibleParticlesData
             // 
@@ -493,6 +495,7 @@
             this.txtbxDensity.Name = "txtbxDensity";
             this.txtbxDensity.Size = new System.Drawing.Size(130, 20);
             this.txtbxDensity.TabIndex = 38;
+            this.toolTip1.SetToolTip(this.txtbxDensity, "Density will determine the radius of each particle given its mass.");
             this.txtbxDensity.Value = new decimal(new int[] {
             22570,
             0,
@@ -605,5 +608,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown txtbxDensity;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

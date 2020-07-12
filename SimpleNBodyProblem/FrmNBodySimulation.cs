@@ -19,6 +19,7 @@ namespace SmallGames.NBodySimulation
     {
         // command for stopping a process running in bg via PowerShell as Admin
         // Stop-Process -id 20396
+        // to add other distributions.
 
         private KnownUniverse universe;
         long counting = 0;
@@ -95,18 +96,14 @@ namespace SmallGames.NBodySimulation
 
         private void SetSimParticlesData(SimulationStartUpData simData)
         {
-            var allMasses = simData.Distribution.GetDistributionValues(simData.MaxParticals, simData.MaxMass, 10).ToArray();
+            var allMasses = simData.Distribution.GetDistributionMassValues(simData.MaxParticals, simData.MaxMass, 10).ToArray();
             var minMass = allMasses.Min();
+            var positionPoints = simData.Distribution.GetPositionDistributionValues(simData.MaxParticals, simData.Height).ToArray();
             simData.ParticlesDatas = new List<SimParticleData>();
             for (long i = 0; i < simData.MaxParticals; i++)
             {
-                var x = (double)Tools.GetRandomNo(30) % simData.Width;
-                var y = (double)Tools.GetRandomNo(30) % simData.Height;
-
-                var point = new DoublePoint(x, y);
-
                 simData.ParticlesDatas.Add(new SimParticleData
-                { Mass = allMasses[i], MultipleOfMass = allMasses[i] / minMass, position = point });
+                { Mass = allMasses[i], MultipleOfMass = allMasses[i] / minMass, position = positionPoints[i] });
             }
         }
 
