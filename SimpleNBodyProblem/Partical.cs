@@ -39,7 +39,7 @@ namespace SmallGames.NBodySimulation
             this.VisualPositionToCenterDifference = -VisualSize / 2;
             calculateRadius();
         }
-        
+
         private void calculateRadius()
         {
             // V = 4/3 * π * r³
@@ -65,7 +65,7 @@ namespace SmallGames.NBodySimulation
         {
             // calculate the acceleration from mass and force: a = F / m
             var acceleration = ForceVector / (double)Mass;
-            
+
             // first calculate the final velocity from initial after having the acceleration for one second:
             // vf = vi + a*t when t = 1 then vi + a
             var vf = VelocityVector + acceleration;
@@ -88,7 +88,9 @@ namespace SmallGames.NBodySimulation
 
         public Partical MergeWith(Partical partical)
         {
-            var postion = (this.Position + partical.Position)/2;
+            // The final position of the merged particle will depend on positions and mass of initials particles. 
+            var postion = (this.Position * this.MultipleOfMass + partical.Position * partical.MultipleOfMass) / (this.MultipleOfMass + partical.MultipleOfMass);
+
             var totalMomentum = this.VelocityVector * this.Mass + partical.VelocityVector * partical.Mass;
             var totalMass = this.Mass + partical.Mass;
             var mulitpleMass = this.MultipleOfMass + partical.MultipleOfMass;
@@ -125,13 +127,13 @@ namespace SmallGames.NBodySimulation
             var secondToFirst = first.Position.DirectionVector(second.Position);
             var firstToSecond = secondToFirst.Reverse();
             var r = first.Position.DistanceBetween(second.Position);
-            if(r < minDistance)
+            if (r < minDistance)
             {
                 combine = true;
                 return;
             }
             // F = G * m1 * m2 / (r*r)
-            var force = (double)(Tools.G* first.Mass * second.Mass / (r * r));
+            var force = (double)(Tools.G * first.Mass * second.Mass / (r * r));
 
             first.AddToForceVector(firstToSecond.Multiply(force));
             second.AddToForceVector(secondToFirst.Multiply(force));
