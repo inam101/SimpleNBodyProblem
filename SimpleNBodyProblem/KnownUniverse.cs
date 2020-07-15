@@ -82,7 +82,7 @@ namespace SmallGames.NBodySimulation
             AllParticals.ToList().ForEach(p => p.CalculateNextPosition());
 
             var toCombine = AllPairs.ToList().Where(p => p.combine).ToList();
-            if (toCombine.Count >= 1)
+            if (toCombine.Count == 1)
             {
                 var group = toCombine.First();
                 AllParticals.Remove(group.first);
@@ -95,7 +95,23 @@ namespace SmallGames.NBodySimulation
             }
             else if (toCombine.Count > 1)
             {
-                // it becomes more complex, so I will skip it.
+                List<long> combined = new List<long>();
+
+                foreach (var item in toCombine)
+                {
+                    // if any of the two particles in a pair have been combined already with anohter one, then skip
+                    if (combined.Contains(item.first.Id) || combined.Contains(item.second.Id))
+                        continue;
+                    AllParticals.Remove(item.first);
+                    AllParticals.Remove(item.second);
+                    var remainder = item.first.MergeWith(item.second);
+                    AllParticals.Add(remainder);
+                    CurrentParticles--;
+                    TwoParticlesMerged?.Invoke(this, EventArgs.Empty);
+                    combined.Add(item.first.Id);
+                    combined.Add(item.second.Id);
+                }
+                MakePairs();
             }
         }
 
